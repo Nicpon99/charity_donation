@@ -17,10 +17,8 @@
 </head>
 <body>
 
-<%@include file="header-admin.jsp"%>
+<%@include file="admin-header.jsp"%>
 
-
-<%@include file="footer.jsp" %>
 
 <script src="<c:url value="/resources/js/app.js"/>"></script>
 </body>
