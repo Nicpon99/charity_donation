@@ -8,3 +8,4 @@ INSERT INTO categories(name) VALUES ("zabawki");
 INSERT INTO categories(name) VALUES ("książki");
 INSERT INTO categories(name) VALUES ("inne");
 INSERT INTO `roles` (`id`, `name`) VALUES (NULL, 'ROLE_USER');
+INSERT INTO `roles` (`id`, `name`) VALUES (NULL, 'ROLE_ADMIN');

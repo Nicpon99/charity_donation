@@ -4,7 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.coderslab.charity.entity.Donation;
+import pl.coderslab.charity.entity.User;
 import pl.coderslab.charity.repository.DonationRepository;
+
+import java.util.List;
 
 @Service
 @Transactional
@@ -23,6 +26,10 @@ public class DonationService {
 
     public void save(Donation donation){
         donationRepository.save(donation);
+    }
+
+    public List<Donation> findByUser(User user){
+        return donationRepository.findByUser(user);
     }
 
 }

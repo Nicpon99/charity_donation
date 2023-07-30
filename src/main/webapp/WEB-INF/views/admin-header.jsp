@@ -9,9 +9,8 @@
         <ul>
             <li><a href="http://localhost:8080" class="btn btn--without-border active">Start</a></li>
             <li><a href="http://localhost:8080/admin/institutions" class="btn btn--without-border">Instytucje</a></li>
-            <li><a href="#" class="btn btn--without-border">O nas</a></li>
-            <li><a href="#" class="btn btn--without-border">Fundacje i organizacje</a></li>
-            <li><a href="#" class="btn btn--without-border">Kontakt</a></li>
+            <li><a href="http://localhost:8080/admin/admins" class="btn btn--without-border">Administratorzy</a></li>
+            <li><a href="http://localhost:8080/admin/users" class="btn btn--without-border">Użytkownicy</a></li>
         </ul>
     </nav>
 </header>

@@ -2,6 +2,7 @@ package pl.coderslab.charity.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -28,11 +29,15 @@ public class SpringDataUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userService.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(username));
-        Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-        user.getRoles().forEach(r ->
-                grantedAuthorities.add(new SimpleGrantedAuthority(r.getName())));
-        return new org.springframework.security.core.userdetails.User(
-                user.getUsername(), user.getPassword(), grantedAuthorities);
+        if (user.getEnabled() == 1) {
+            Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
+            user.getRoles().forEach(r ->
+                    grantedAuthorities.add(new SimpleGrantedAuthority(r.getName())));
+            return new org.springframework.security.core.userdetails.User(
+                    user.getUsername(), user.getPassword(), grantedAuthorities);
+        } else {
+            throw new DisabledException("Konto użytkownika jest zablokowane");
+        }
 
     }
 }

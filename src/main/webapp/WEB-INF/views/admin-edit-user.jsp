@@ -21,21 +21,28 @@
 
 <section class="help">
 
-    <h2>Dodaj instytucję</h2>
+    <h2>EDYTUJ DANE UŻYTKOWNIKA</h2>
 
     <div class="form-section">
-        <form:form method="POST" modelAttribute="institution">
+        <form:form method="POST" modelAttribute="user" action="/admin/users/update">
+            <form:hidden path="id" value="${user.id}"/>
             <h3 class="form-group">
-                Nazwa
+                E-mail
             </h3>
             <div class="form-group">
-                <form:input path="name"/>
+                <form:input path="username" value="${user.username}"/>
             </div>
             <h3 class="form-group">
-                Opis
+                Imię
             </h3>
             <div class="form-group">
-                <form:textarea path="description" cols="50" rows="4"/>
+                <form:input path="name" value="${user.name}"/>
+            </div>
+            <h3 class="form-group">
+                Nazwisko
+            </h3>
+            <div class="form-group">
+                <form:input path="surname" value="${user.surname}"/>
             </div>
             <br>
             <br>
@@ -43,8 +50,9 @@
                 <button type="submit" class="btn" style="color: green">Zapisz</button>
             </div>
             <ul>
+                <form:errors path="username" element="li" class="error"/>
                 <form:errors path="name" element="li" class="error"/>
-                <form:errors path="description" element="li" class="error"/>
+                <form:errors path="surname" element="li" class="error"/>
             </ul>
         </form:form>
     </div>
@@ -53,4 +61,5 @@
 <script src="<c:url value="/resources/js/app.js"/>"></script>
 </body>
 </html>
+
 
