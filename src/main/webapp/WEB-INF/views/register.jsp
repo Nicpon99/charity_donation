@@ -19,7 +19,7 @@
 <body>
 <header>
 
-<%@include file="header.jsp"%>
+    <%@include file="header.jsp" %>
 
 </header>
 
@@ -28,26 +28,33 @@
     <div class="login-page">
         <form:form method="POST" modelAttribute="user">
             <div class="form-group">
-                <form:input path="username" placeholder="Email"/>
+                <form:input path="username" placeholder="Email" id="username"/>
             </div>
             <div class="form-group">
-                <form:input path="name" placeholder="Imię"/>
+                <form:input path="name" placeholder="Imię" id="name"/>
             </div>
             <div class="form-group">
-                <form:input path="surname" placeholder="Nazwisko"/>
+                <form:input path="surname" placeholder="Nazwisko" id="surname"/>
             </div>
             <div class="form-group">
-                <form:input path="password" placeholder="Hasło" type="password"/>
+                <form:input path="password" placeholder="Hasło" type="password" id="pass1"/>
+            </div>
+            <div class="form-group">
+                <input type="password" id="pass2" placeholder="Powtórz hasło">
             </div>
             <div>
-            <form:errors path="username" element="div" class="error"/><br>
-            <form:errors path="name" element="div" class="error"/><br>
-            <form:errors path="surname" element="div" class="error"/><br>
-            <form:errors path="password" element="div" class="error"/><br>
+                <ul>
+                    <form:errors path="username" element="li" class="error"/><br>
+                    <form:errors path="name" element="li" class="error"/><br>
+                    <form:errors path="surname" element="li" class="error"/><br>
+                    <form:errors path="password" element="li" class="error"/><br>
+                </ul>
             </div>
-            <div class="form-group--buttons" style="gap: 50px">
-                <a href="#" class="btn">Zaloguj się</a>
+            <div class="form-group--buttons" style="display: block" id="button">
                 <button class="btn" type="submit">Załóż konto</button>
+            </div>
+            <div id="error-message" style="display: none" class="error">
+                Wpisane hasła nie są takie same
             </div>
         </form:form>
     </div>
@@ -57,6 +64,7 @@
 <%@include file="footer.jsp" %>
 
 <script src="<c:url value="/resources/js/app.js"/>"></script>
+<script src="<c:url value="/resources/js/check-password.js"/>"></script>
 </body>
 </html>
 

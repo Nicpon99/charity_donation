@@ -1829,6 +1829,43 @@ footer .bottom-line--icons a img {
 
 .error{
   color: red;
+  font-size: large;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th {
+  text-align: center;
+  padding: 8px;
+  border: 1px solid white;
+}
+
+td {
+  text-align: center;
+  padding: 8px;
+  border: 1px solid #8B4513;
+}
+
+th {
+  background-color: #8B4513;
+  color: white;
+}
+
+th, th * {
+  padding: 8px;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+ul li {
+  text-align: left;
 }
 
 

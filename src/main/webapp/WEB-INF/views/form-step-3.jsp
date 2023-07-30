@@ -50,7 +50,9 @@
                         </c:forEach>
 
                         <br>
-                        <form:errors path="institution" element="div" class="error"/>
+                        <ul>
+                        <form:errors path="institution" element="li" class="error"/>
+                        </ul>
                         <br>
                         <a class="btn" href="http://localhost:8080/donation/form/2#form2">Wstecz</a>
                         <button class="btn" type="submit">Dalej</button>
@@ -58,8 +60,8 @@
                 </div>
                 </form:form>
             </div>
-    </div>
 </section>
+    </div>
 
 
 </div>

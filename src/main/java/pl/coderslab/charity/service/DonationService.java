@@ -7,7 +7,10 @@ import pl.coderslab.charity.entity.Donation;
 import pl.coderslab.charity.entity.User;
 import pl.coderslab.charity.repository.DonationRepository;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -30,6 +33,26 @@ public class DonationService {
 
     public List<Donation> findByUser(User user){
         return donationRepository.findByUser(user);
+    }
+
+    public List<Donation> findAll(){
+        return donationRepository.findAll();
+    }
+
+    public List<Donation> findAllSorted(User user){
+        return donationRepository.findAllByUserSorted(user);
+    }
+
+    public Optional<Donation> findById(Long id){
+        return donationRepository.findById(id);
+    }
+
+    public void confirmPicUp(LocalDate localDate, Long id){
+        donationRepository.confirmPickUp(localDate, id);
+    }
+
+    public void cancelConfirmPickUp(Long id){
+        donationRepository.cancelConfirmPickUp(id);
     }
 
 }

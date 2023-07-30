@@ -14,6 +14,7 @@ import pl.coderslab.charity.validation.SecondStep;
 import pl.coderslab.charity.validation.ThirdStep;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -62,6 +63,13 @@ public class Donation {
     @DateTimeFormat(pattern = "HH:mm")
     private LocalTime pickUpTime;
 
+    private String pickUpStatus = "nieodebrany";
+
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate pickUpConfirmed;
+
+    private LocalDateTime created;
+
     private String pickUpComment;
 
     @NotNull(message = "Musisz wybrać instytucję, do której chcesz przekazać swoje dary", groups = ThirdStep.class)
@@ -76,4 +84,9 @@ public class Donation {
 
     @ManyToOne
     private User user;
+
+    @PrePersist
+    public void prePersist(){
+        created = LocalDateTime.now();
+    }
 }

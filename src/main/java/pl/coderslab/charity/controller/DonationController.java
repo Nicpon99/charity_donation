@@ -9,10 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.WebApplicationContext;
 import pl.coderslab.charity.entity.Donation;
 import pl.coderslab.charity.entity.User;
@@ -28,7 +25,10 @@ import pl.coderslab.charity.validation.SecondStep;
 import pl.coderslab.charity.validation.ThirdStep;
 
 import java.security.Principal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @Controller
@@ -140,6 +140,39 @@ public class DonationController {
 
 
         return "form-confirmation";
+    }
+
+
+    @GetMapping("/account/donations")
+    public String getAllDonations(Model model, Principal principal){
+        User user = userService.findByUsername(principal.getName()).orElseThrow(
+                () -> new UsernameNotFoundException(principal.getName()));
+
+        model.addAttribute("donations", donationService.findAllSorted(user));
+        return "account-donations";
+    }
+
+    @GetMapping("/account/donations/info/{donationId}")
+    public String getDonationInfo(@PathVariable("donationId") Long donationId, Model model){
+        Donation donation = donationService.findById(donationId).orElseThrow(
+                () -> new NoSuchElementException("Not found donation with this ID"));
+
+        model.addAttribute("donation", donation);
+        return "account-donation-info";
+    }
+
+    @GetMapping("/account/donations/pickUp/{donationId}")
+    public String setPickUpStatus(@PathVariable("donationId") Long donationId){
+        Donation donation = donationService.findById(donationId).orElseThrow(
+                () -> new NoSuchElementException("Not found donation with this ID"));
+
+        if (donation.getPickUpStatus().equalsIgnoreCase("nieodebrany")){
+            donationService.confirmPicUp(LocalDate.now(), donationId);
+        } else {
+            donationService.cancelConfirmPickUp(donationId);
+        }
+
+        return "redirect:/account/donations";
     }
 
 

@@ -17,7 +17,9 @@
 </head>
 <body>
 
-<%@include file="admin-header.jsp"%>
+<%@include file="header-admin.jsp"%>
+
+<h2>SIEMA ADMIN</h2>
 
 
 <script src="<c:url value="/resources/js/app.js"/>"></script>

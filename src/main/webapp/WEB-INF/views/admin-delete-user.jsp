@@ -17,7 +17,7 @@
 </head>
 <body>
 
-<%@include file="admin-header.jsp"%>
+<%@include file="header-admin.jsp"%>
 
 <section class="help">
 

@@ -48,7 +48,9 @@
                                     </div>
                                 </c:forEach>
                                 <br>
-                                <form:errors path="categories" element="div" class="error"/>
+                                <ul>
+                                <form:errors path="categories" element="li" class="error"/>
+                                </ul>
                                 <br>
                                 <button class="btn" type="submit">Dalej</button>
                             </div>

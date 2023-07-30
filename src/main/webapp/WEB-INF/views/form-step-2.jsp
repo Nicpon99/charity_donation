@@ -44,7 +44,9 @@
               <form:input path="quantity" type="number"/>
               <div>
                 <br>
-                <form:errors path="quantity" element="div" class="error"/>
+                <ul>
+                <form:errors path="quantity" element="li" class="error"/>
+                </ul>
                 <br>
                 <a class="btn" href="http://localhost:8080/donation/form/1#form1">Wstecz</a>
                 <button class="btn" type="submit">Dalej</button>

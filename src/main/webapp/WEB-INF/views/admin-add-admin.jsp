@@ -17,7 +17,7 @@
 </head>
 <body>
 
-<%@include file="admin-header.jsp" %>
+<%@include file="header-admin.jsp" %>
 
 <section class="help">
 
@@ -29,30 +29,37 @@
         E-mail
       </h3>
       <div class="form-group">
-        <form:input path="username"/>
+        <form:input path="username" id="username"/>
       </div>
       <h3 class="form-group">
         Imię
       </h3>
       <div class="form-group">
-        <form:input path="name"/>
+        <form:input path="name" id="name"/>
       </div>
       <h3 class="form-group">
         Nazwisko
       </h3>
       <div class="form-group">
-        <form:input path="surname"/>
+        <form:input path="surname" id="surname"/>
       </div>
       <h3 class="form-group">
         Hasło
       </h3>
       <div class="form-group">
-        <form:input path="password" type="password"/>
+        <form:input path="password" type="password" id="pass1"/>
+      </div>
+      <h3>Powtórz hasło</h3>
+      <div class="form-group">
+        <input type="password" id="pass2">
       </div>
       <br>
       <br>
-      <div class="form-group">
-        <button type="submit" class="btn" style="color: green">Zapisz</button>
+      <div class="form-group--buttons" style="display: block" id="button">
+        <button class="btn" type="submit">Zapisz</button>
+      </div>
+      <div id="error-message" style="display: none" class="error">
+        Wpisane hasła nie są takie same
       </div>
       <ul>
         <form:errors path="username" element="li" class="error"/>
@@ -65,5 +72,6 @@
 </section>
 
 <script src="<c:url value="/resources/js/app.js"/>"></script>
+<script src="<c:url value="/resources/js/check-password.js"/>"></script>
 </body>
 </html>

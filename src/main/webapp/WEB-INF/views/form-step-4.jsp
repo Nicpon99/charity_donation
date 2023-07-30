@@ -98,14 +98,16 @@
                         </div>
 
                         <br>
-                        <form:errors path="street" element="div" class="error"/>
-                        <form:errors path="homeNumber" element="div" class="error"/>
-                        <form:errors path="flatNumber" element="div" class="error"/>
-                        <form:errors path="city" element="div" class="error"/>
-                        <form:errors path="zipCode" element="div" class="error"/>
-                        <form:errors path="phoneNumber" element="div" class="error"/>
-                        <form:errors path="pickUpDate" element="div" class="error"/>
-                        <form:errors path="pickUpTime" element="div" class="error"/>
+                        <ul>
+                        <form:errors path="street" element="li" class="error"/>
+                        <form:errors path="homeNumber" element="li" class="error"/>
+                        <form:errors path="flatNumber" element="li" class="error"/>
+                        <form:errors path="city" element="li" class="error"/>
+                        <form:errors path="zipCode" element="li" class="error"/>
+                        <form:errors path="phoneNumber" element="li" class="error"/>
+                        <form:errors path="pickUpDate" element="li" class="error"/>
+                        <form:errors path="pickUpTime" element="li" class="error"/>
+                        </ul>
                         <br>
                         <a class="btn" href="http://localhost:8080/donation/form/3#form3">Wstecz</a>
                         <button class="btn" type="submit">Dalej</button>
