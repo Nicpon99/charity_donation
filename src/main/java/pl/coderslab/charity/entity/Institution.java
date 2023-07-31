@@ -1,9 +1,7 @@
 package pl.coderslab.charity.entity;
 
 import jakarta.validation.constraints.NotEmpty;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import jakarta.persistence.*;
 
@@ -12,6 +10,9 @@ import jakarta.persistence.*;
 @Getter
 @Setter
 @ToString
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Institution {
 
     @Id

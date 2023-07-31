@@ -1,8 +1,6 @@
 package pl.coderslab.charity.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import jakarta.persistence.*;
 
@@ -11,6 +9,9 @@ import jakarta.persistence.*;
 @Getter
 @Setter
 @ToString
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Category {
 
     @Id
