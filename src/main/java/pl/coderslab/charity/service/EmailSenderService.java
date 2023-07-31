@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+import pl.coderslab.charity.entity.Donation;
 
 @Service
 @RequiredArgsConstructor
@@ -22,4 +23,5 @@ public class EmailSenderService {
 
         System.out.println("Mail sent successfully");
     }
+
 }

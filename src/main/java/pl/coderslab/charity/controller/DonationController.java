@@ -13,12 +13,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.WebApplicationContext;
 import pl.coderslab.charity.entity.Donation;
 import pl.coderslab.charity.entity.User;
-import pl.coderslab.charity.service.CategoryService;
-import pl.coderslab.charity.service.DonationService;
-import pl.coderslab.charity.service.InstitutionService;
+import pl.coderslab.charity.service.*;
 import pl.coderslab.charity.entity.Category;
 import pl.coderslab.charity.entity.Institution;
-import pl.coderslab.charity.service.UserService;
 import pl.coderslab.charity.validation.FirstStep;
 import pl.coderslab.charity.validation.FourthStep;
 import pl.coderslab.charity.validation.SecondStep;
@@ -43,6 +40,8 @@ public class DonationController {
     private final DonationService donationService;
 
     private final UserService userService;
+
+    private final EmailSenderService senderService;
 
     @GetMapping("/donation/form/1")
     public String getDonationForm1(Model model){
@@ -135,6 +134,9 @@ public class DonationController {
         donation.setUser(user);
 
         donationService.save(donation);
+
+        senderService.sendEmail(donation.getUser().getUsername(), "Potwierdzenie rejestracji daru",
+                donationService.getMessageWithDonationDetails(donation));
 
         return "form-confirmation";
     }

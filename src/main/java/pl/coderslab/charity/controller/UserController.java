@@ -30,6 +30,7 @@ public class UserController {
 
     private final RoleService roleService;
 
+
     @GetMapping("/register/user")
     public String registerUser(Model model){
         model.addAttribute("user", new User());
