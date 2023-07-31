@@ -61,8 +61,7 @@ public class UserController {
 
     @GetMapping("/admin/admins")
     public String getAllAdmins(Model model, Principal principal){
-        User user = userService.findByUsername(principal.getName()).orElseThrow(
-                () -> new NoSuchElementException("Not found user with this username"));
+        User user = userService.findByUsername(principal.getName());
 
         model.addAttribute("principalAdminId", user.getId());
 
@@ -91,11 +90,8 @@ public class UserController {
 
     @GetMapping("/admin/admins/edit/{adminId}")
     public String editAdmin(@PathVariable("adminId") Long adminId ,Model model, Principal principal){
-        User user = userService.findById(adminId).orElseThrow(
-                () -> new NoSuchElementException("Not found user with this ID"));
-
+        User user = userService.findById(adminId);
         model.addAttribute("user", user);
-
         return "admin-edit-admin";
     }
 
@@ -119,11 +115,8 @@ public class UserController {
 
     @GetMapping("/admin/admins/delete/confirmed/{adminId}")
     public String confirmedDeleteAdmin(@PathVariable("adminId") Long adminId){
-        User user = userService.findById(adminId).orElseThrow(
-                () -> new NoSuchElementException("Not found user with this ID"));
-
+        User user = userService.findById(adminId);
         userService.deleteUserByIdWithRelations(user);
-
         return "redirect:/admin/admins";
     }
 
@@ -137,9 +130,7 @@ public class UserController {
 
     @GetMapping("/admin/users/edit/{userId}")
     public String editUser(@PathVariable("userId") Long userId, Model model){
-        User user = userService.findById(userId).orElseThrow(
-                () -> new NoSuchElementException("Not found user with this ID"));
-
+        User user = userService.findById(userId);
         model.addAttribute("user", user);
         return "admin-edit-user";
     }
@@ -163,20 +154,15 @@ public class UserController {
 
     @GetMapping("/admin/users/delete/confirmed/{userId}")
     public String confirmedDeleteUser(@PathVariable("userId") Long userId){
-        User user = userService.findById(userId).orElseThrow(
-                () -> new NoSuchElementException("Not found user with this ID"));
-
+        User user = userService.findById(userId);
         userService.deleteUserByIdWithRelations(user);
-
         return "redirect:/admin/users";
     }
 
 
     @GetMapping("/admin/users/block/{userId}")
     public String blockOrUnblockUser(@PathVariable("userId") Long userId){
-        User user = userService.findById(userId).orElseThrow(
-                () -> new NoSuchElementException("Not found user with this ID"));
-
+        User user = userService.findById(userId);
         userService.blockOrUnblockUser(user);
         return "redirect:/admin/users";
     }

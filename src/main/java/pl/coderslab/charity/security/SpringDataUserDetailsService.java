@@ -28,7 +28,7 @@ public class SpringDataUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userService.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(username));
+        User user = userService.findByUsername(username);
         if (user.getEnabled() == 1) {
             Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
             user.getRoles().forEach(r ->
@@ -38,6 +38,5 @@ public class SpringDataUserDetailsService implements UserDetailsService {
         } else {
             throw new DisabledException("Konto użytkownika jest zablokowane");
         }
-
     }
 }

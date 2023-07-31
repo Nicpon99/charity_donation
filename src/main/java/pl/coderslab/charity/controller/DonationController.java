@@ -130,14 +130,11 @@ public class DonationController {
         donation.setQuantity(quantity);
         donation.setInstitution(institution);
 
-
-        User user = userService.findByUsername(principal.getName()).orElseThrow(
-                () -> new UsernameNotFoundException(principal.getName()));
+        User user = userService.findByUsername(principal.getName());
 
         donation.setUser(user);
 
         donationService.save(donation);
-
 
         return "form-confirmation";
     }
@@ -145,27 +142,21 @@ public class DonationController {
 
     @GetMapping("/account/donations")
     public String getAllDonations(Model model, Principal principal){
-        User user = userService.findByUsername(principal.getName()).orElseThrow(
-                () -> new UsernameNotFoundException(principal.getName()));
-
+        User user = userService.findByUsername(principal.getName());
         model.addAttribute("donations", donationService.findAllSorted(user));
         return "account-donations";
     }
 
     @GetMapping("/account/donations/info/{donationId}")
     public String getDonationInfo(@PathVariable("donationId") Long donationId, Model model){
-        Donation donation = donationService.findById(donationId).orElseThrow(
-                () -> new NoSuchElementException("Not found donation with this ID"));
-
+        Donation donation = donationService.findById(donationId);
         model.addAttribute("donation", donation);
         return "account-donation-info";
     }
 
     @GetMapping("/account/donations/pickUp/{donationId}")
     public String setPickUpStatus(@PathVariable("donationId") Long donationId){
-        Donation donation = donationService.findById(donationId).orElseThrow(
-                () -> new NoSuchElementException("Not found donation with this ID"));
-
+        Donation donation = donationService.findById(donationId);
         if (donation.getPickUpStatus().equalsIgnoreCase("nieodebrany")){
             donationService.confirmPicUp(LocalDate.now(), donationId);
         } else {

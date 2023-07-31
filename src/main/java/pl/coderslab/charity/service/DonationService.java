@@ -10,6 +10,7 @@ import pl.coderslab.charity.repository.DonationRepository;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -43,8 +44,9 @@ public class DonationService {
         return donationRepository.findAllByUserSorted(user);
     }
 
-    public Optional<Donation> findById(Long id){
-        return donationRepository.findById(id);
+    public Donation findById(Long id){
+        return donationRepository.findById(id).orElseThrow(
+                () -> new NoSuchElementException("Not found donation with this ID"));
     }
 
     public void confirmPicUp(LocalDate localDate, Long id){
